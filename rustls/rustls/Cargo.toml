@@ -1,0 +1,76 @@
+[package]
+name = "custls"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.83"
+license = "Apache-2.0 OR ISC OR MIT"
+readme = "../README.md"
+description = "Custls is a fork of rustls, designed to enhance TLS client fingerprinting resistance while preserving the original library's strong security guarantees, minimal configuration needs, and memory-safe Rust implementation."
+homepage = "https://github.com/komAAmok/custls"
+repository = "https://github.com/komAAmok/custls"
+categories = ["network-programming", "cryptography"]
+autobenches = false
+autotests = false
+exclude = ["src/testdata", "tests/**"]
+
+[features]
+default = ["log", "std"]
+brotli = ["dep:brotli", "dep:brotli-decompressor", "std"]
+log = ["dep:log"]
+std = ["webpki/std", "pki-types/std", "once_cell/std"]
+zlib = ["dep:zlib-rs"]
+
+[dependencies]
+brotli = { workspace = true, optional = true }
+brotli-decompressor = { workspace = true, optional = true }
+hashbrown = { workspace = true, optional = true }
+log = { workspace = true, optional = true }
+# only required for no-std
+once_cell = { workspace = true }
+subtle = { workspace = true }
+webpki = { workspace = true }
+pki-types = { workspace = true }
+zeroize = { workspace = true }
+zlib-rs = { workspace = true, optional = true }
+
+[dev-dependencies]
+bencher = { workspace = true }
+env_logger = { workspace = true }
+log = { workspace = true }
+macro_rules_attribute = { workspace = true }
+proptest = "1.4"
+rcgen = { workspace = true }
+rustls-ring = { path = "../rustls-ring" }
+rustls-test = { workspace = true, default-features = false }
+time = { workspace = true }
+webpki-roots = { workspace = true }
+
+[target.'cfg(any(target_arch = "aarch64", target_arch = "x86_64"))'.dev-dependencies]
+graviola = { workspace = true }
+
+[[example]]
+name = "test_ca"
+path = "examples/internal/test_ca.rs"
+
+[[bench]]
+name = "custls_benchmarks"
+path = "benches/custls_benchmarks.rs"
+harness = false
+
+[package.metadata.docs.rs]
+# all non-default features except fips (cannot build on docs.rs environment)
+features = ["brotli", "hashbrown", "log", "std", "zlib"]
+rustdoc-args = ["--cfg", "rustls_docsrs"]
+
+[package.metadata.cargo_check_external_types]
+allowed_external_types = [
+  # ---
+  "rustls_pki_types",
+  "rustls_pki_types::*",
+]
+
+[package.metadata.cargo-semver-checks.lints]
+enum_no_repr_variant_discriminant_changed = "warn"
+
+[lints]
+workspace = true

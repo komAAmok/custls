@@ -1,0 +1,9 @@
+# Edge 130 ClientHello Capture (Windows 11)
+# Captured: 2026-01-23
+# Target: example.com:443
+# 
+# This is a placeholder file. To populate with real data:
+# 1. Follow BROWSER_CAPTURE_GUIDE.md
+# 2. Use Wireshark to capture ClientHello
+# 3. Export as hex stream (no spaces)
+# 4. Replace this content with actual hex data
