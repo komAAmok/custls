@@ -1,6 +1,5 @@
-<p align="center">
-  <img width="460" height="300" src="https://raw.githubusercontent.com/rustls/rustls/main/admin/rustls-logo-web.png">
-</p>
+![logo](./assets/logo.png)
+
 
 <p align="center">
 <strong>custls</strong> - A minimal-invasive fork of rustls with browser-level TLS fingerprint simulation
