@@ -3,7 +3,7 @@ name = "custls"
 version = "0.1.0"
 edition = "2026"
 rust-version = "1.92"
-license = "Apache-2.0 OR ISC OR MIT"
+license = "Apache-2.0"
 readme = "README.md"
 description = "Custls is a fork of rustls, designed to enhance TLS client fingerprinting resistance while preserving the original library's strong security guarantees, minimal configuration needs, and memory-safe Rust implementation."
 homepage = "https://github.com/komAAmok/custls"
@@ -45,10 +45,6 @@ webpki-roots = { workspace = true }
 
 [target.'cfg(any(target_arch = "aarch64", target_arch = "x86_64"))'.dev-dependencies]
 graviola = { workspace = true }
-
-[[example]]
-name = "test_ca"
-path = "examples/internal/test_ca.rs"
 
 [package.metadata.docs.rs]
 # all non-default features except fips (cannot build on docs.rs environment)
